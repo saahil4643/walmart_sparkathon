@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+
+    <title>Stitch Design</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden" style='font-family: Inter, "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f1f2f4] px-10 py-3">
+          <div class="flex items-center gap-4 text-[#121416]">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-[#121416] text-lg font-bold leading-tight tracking-[-0.015em]">StockWise</h2>
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+              <a class="text-[#121416] text-sm font-medium leading-normal" href="{% url 'index' %}">Dashboard</a>
+              <a class="text-[#121416] text-sm font-medium leading-normal" href="{% url 'add_product' %}">Add Products</a>
+              <a class="text-[#121416] text-sm font-medium leading-normal" href="{% url 'inventory' %}">Stock </a>
+              <a class="text-[#121416] text-sm font-medium leading-normal" href="{% url 'alerts' %}">Alerts</a>
+              <a class="text-[#121416] text-sm font-medium leading-normal" href="{% url 'request_transfer' %}">Transfer Stocks</a>
+              <a class="text-[#121416] text-sm font-medium leading-normal" href="{% url 'transport_costs' %}">Transfer costs</a>
+            </div>
+            <div
+              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCF67tXg4bvG3M5rg4zgrXOFLXDf69WZmt6-blrzRYOPn3gpKvOOqq35UY-CRBfMkkQqdvJwSx-1xjPsQF8ZoiezgYBeFFElPXshTHGKrFoSET5sgel52CsYMzIDgy3Eg9EDgLa5WYDKlkOqFjXRcYPN6xOrJjx4ECWkO3IQ6a0WVE2WtvW8477aFv_ZAxa6AzJXuNr3ZhvehxNx3E58NIESZT-SVpHrla-XFjFchAHIGwGxrYDbY2goggM1Iahi2If005SJuhPIqs");'
+            ></div>
+          </div>
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap justify-between gap-3 p-4">
+              <div class="flex min-w-72 flex-col gap-3">
+                <p class="text-[#111418] tracking-light text-[32px] font-bold leading-tight">Alerts &amp; Notifications</p>
+                <p class="text-[#637188] text-sm font-normal leading-normal">Manage and respond to critical alerts and notifications.</p>
+              </div>
+            </div>
+            <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Store Manager Alerts</h3>
+            {% for alert in alerts %}
+<div class="p-4">
+  <div class="flex items-stretch justify-between gap-4 rounded-lg bg-white p-4 shadow">
+    <div class="flex flex-[2_2_0px] flex-col gap-4">
+      <div class="flex flex-col gap-1">
+        <p class="text-[#111418] text-base font-bold leading-tight">Dead Stock Alert: {{ alert.name }}</p>
+        <p class="text-[#637188] text-sm font-normal leading-normal">
+          Store: {{ alert.store_id }}. Stock: {{ alert.current_stock }} units. Weekly Sales Rate: {{ alert.weekly_sales_rate }}.
+        </p>
+      </div>
+      <button class="flex w-fit h-8 px-4 rounded-lg bg-[#f0f2f4] text-[#111418] text-sm font-medium">
+        <span class="truncate">View Details</span>
+      </button>
+    </div>
+    <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1" style="background-image: url('https://source.unsplash.com/random/400x300/?warehouse');"></div>
+  </div>
+</div>
+{% empty %}
+  <div class="px-4 py-3 text-gray-500">No dead stock alerts yet.</div>
+{% endfor %}
+
+
+           
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
